@@ -5,7 +5,20 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
-int compareTwoString(char[],char[]);  
+void wget() 
+{
+  system("wget * >> /dev/null");
+}
+
+void unzip()
+{
+  system("unzip *.zip >> /dev/null");
+}
+
+void clean()
+{
+  system("rm *.zip");
+}
 
 int compareTwoString(char a[],char b[])  
 {  
@@ -46,7 +59,7 @@ int main(int argc, char *argv[]) {
         }
         else {
           mkdir(argv[2], 0700);
-          // printf("%s is your project name \n", argv[2]);
+          printf("%s is your project name \n", argv[2]);
         }
       }
     }

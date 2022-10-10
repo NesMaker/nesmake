@@ -1,5 +1,5 @@
 compile = ["make", "-s"]
-run = "./main && make clean"
+run = "./main version && make clean"
 entrypoint = "main.c"
 hidden = ["main", "main-debug", "**/*.o", "**/*.d", ".ccls-cache", "Makefile"]
 
