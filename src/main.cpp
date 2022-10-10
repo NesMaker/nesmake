@@ -5,19 +5,15 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
-void wget() 
+void download() 
 {
-  system("wget * >> /dev/null");
-}
-
-void unzip()
-{
-  system("unzip *.zip >> /dev/null");
+  system("git clone https://github.com/PokeyManatee4/nes-hello -q");
 }
 
 void clean()
 {
-  system("rm *.zip");
+  system("rm nes-hello/.git -rf");
+  system("rm nes-hello/.github -rf");
 }
 
 int compareTwoString(char a[],char b[])  
@@ -58,7 +54,10 @@ int main(int argc, char *argv[]) {
           printf("No project name provided \n");
         }
         else {
-          mkdir(argv[2], 0700);
+          // mkdir(argv[2], 0700);
+          download();
+          clean();
+          rename("nes-hello", argv[2]);
           printf("%s is your project name \n", argv[2]);
         }
       }
