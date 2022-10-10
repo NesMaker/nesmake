@@ -61,5 +61,9 @@ int main(int argc, char *argv[]) {
           printf("%s is your project name \n", argv[2]);
         }
       }
+      if(c2 + c1 == 2) {
+        printf("%s: Unknown argument for the list of arguments run \n", argv[1]);
+        printf("%s help \n", argv[0]);
+       }
     }
 }
