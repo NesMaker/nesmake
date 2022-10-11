@@ -1,26 +1,28 @@
 #include <cstdio>
 #include <cstdlib>
-#include <string>
+#include <cstring>
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <dirent.h>
 #include <errno.h>
 
-int download() 
+
+int download(char* arg) 
 {
-  int downloader = system("git clone https://github.com/PokeyManatee4/nes-hello -q");
+  int down = system("git clone https://github.com/NesMaker/configurer -q");
+  int clean1  = system("rm configurer/.git -rf");
+  int clean2  = system("rm configurer/.github -rf");
   return 0;
 }
 
-int clean()
+int config(char* arg)
 {
-  int cleaner1 = system("rm nes-hello/.git -rf");
-  int cleaner2 = system("rm nes-hello/.github -rf");
+  int shut = system("cd hello && mv Makefile makerfiler && make -f makerfiler && rm makefiler -rf");
   return 0;
 }
 
-int compareTwoString(char a[],const char b[])  
+int compareTwoString(char a[], const char b[])  
 {  
     int flag=0,i=0;
     while(a[i]!='\0' &&b[i]!='\0')
@@ -68,9 +70,9 @@ int main(int argc, char *argv[]) {
             return 0;
            }
           else {
-            download();
-            clean();
-            rename("nes-hello", argv[2]);
+            download(argv[2]);
+            rename("configurer", argv[2]);
+            config(argv[2]);
             DIR* dir1 = opendir(argv[2]);
             if (dir1) {
             printf("Project created sucessfully \n");

@@ -1,5 +1,6 @@
 { pkgs }: {
 	deps = [
+    pkgs.busybox
     pkgs.nano
     pkgs.cc65
     pkgs.gcc
