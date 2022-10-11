@@ -1,7 +1,7 @@
 compile = ["make", "-s"]
 run = "./main create hello && make clean"
 entrypoint = "main.c"
-hidden = ["main", "main-debug", "**/*.o", "**/*.d", ".ccls-cache", "Makefile"]
+hidden = ["main", "**/*.o", "**/*.d", ".ccls-cache", "Makefile"]
 
 [gitHubImport]
 requiredFiles = [".replit", "replit.nix", ".ccls-cache"]
@@ -10,7 +10,7 @@ requiredFiles = [".replit", "replit.nix", ".ccls-cache"]
 support = true
 
 [debugger.compile]
-command = ["make", "main-debug"]
+command = ["make", "main"]
 noFileArgs = true
 
 [debugger.interactive]
@@ -48,7 +48,7 @@ externalConsole = false
 logging = {}
 miDebuggerPath = "gdb"
 name = "g++ - Build and debug active file"
-program = "./main-debug"
+program = "./main"
 request = "launch"
 setupCommands = [
 	{ description = "Enable pretty-printing for gdb", ignoreFailures = true, text = "-enable-pretty-printing" }
