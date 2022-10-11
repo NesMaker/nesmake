@@ -4,6 +4,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <dirent.h>
+#include <errno.h>
 
 void download() 
 {
@@ -54,11 +56,20 @@ int main(int argc, char *argv[]) {
           printf("No project name provided \n");
         }
         else {
-          // mkdir(argv[2], 0700);
+          DIR* dir = opendir(argv[2]);
+          if (dir) {
+            closedir(dir);
+            printf("Not creating project \n");
+            printf("Reason: \n");
+            printf("Project Exists \n");
+            return 0;
+           }
+          else {
           download();
           clean();
           rename("nes-hello", argv[2]);
           printf("%s is your project name \n", argv[2]);
+          }
         }
       }
       if(c2 + c1 == 2) {
