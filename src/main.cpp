@@ -7,18 +7,20 @@
 #include <dirent.h>
 #include <errno.h>
 
-void download() 
+int download() 
 {
-  system("git clone https://github.com/PokeyManatee4/nes-hello -q");
+  int downloader = system("git clone https://github.com/PokeyManatee4/nes-hello -q");
+  return 0;
 }
 
-void clean()
+int clean()
 {
-  system("rm nes-hello/.git -rf");
-  system("rm nes-hello/.github -rf");
+  int cleaner1 = system("rm nes-hello/.git -rf");
+  int cleaner2 = system("rm nes-hello/.github -rf");
+  return 0;
 }
 
-int compareTwoString(char a[],char b[])  
+int compareTwoString(char a[],const char b[])  
 {  
     int flag=0,i=0;
     while(a[i]!='\0' &&b[i]!='\0')
@@ -39,18 +41,20 @@ int compareTwoString(char a[],char b[])
 } 
 
 int main(int argc, char *argv[]) { 
+    const char* help = "help";
+    const char* cre = "create";
     if(argv[1] == NULL) {
       printf("No arguments provided \n");
       printf("For info on how to use nesmake run \n");
       printf("%s help \n", argv[0]);
     }
     else {
-      int c2 = compareTwoString(argv[1], "help");  
+      int c2 = compareTwoString(argv[1], help);  
       if(c2 == 0) {
         printf("To create a project do \n");
         printf("%s create projectnamehere \n", argv[0]);
       }
-      int c1 = compareTwoString(argv[1], "create"); 
+      int c1 = compareTwoString(argv[1], cre); 
       if(c1 == 0) {
         if(argv[2] == NULL) {
           printf("No project name provided \n");
@@ -58,17 +62,24 @@ int main(int argc, char *argv[]) {
         else {
           DIR* dir = opendir(argv[2]);
           if (dir) {
-            closedir(dir);
             printf("Not creating project \n");
-            printf("Reason: \n");
-            printf("Project Exists \n");
+            printf("Reason: Project exists \n");
+            closedir(dir);
             return 0;
            }
           else {
-          download();
-          clean();
-          rename("nes-hello", argv[2]);
-          printf("%s is your project name \n", argv[2]);
+            download();
+            clean();
+            rename("nes-hello", argv[2]);
+            DIR* dir1 = opendir(argv[2]);
+            if (dir1) {
+            printf("Project created sucessfully \n");
+            closedir(dir1);
+            return 0;
+            }
+            else {
+            printf("Project create failed");
+            }
           }
         }
       }
