@@ -1,14 +1,9 @@
 { pkgs }: {
 	deps = [
-    pkgs.busybox
-    pkgs.nano
-    pkgs.cc65
-    pkgs.gcc
     pkgs.binutils
+    pkgs.busybox
+    pkgs.gcc
 		pkgs.vim
-    pkgs.clang_12
-		pkgs.ccls
-		pkgs.gdb
 		pkgs.gnumake
 	];
 }

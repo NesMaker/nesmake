@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <errno.h>
+#include <fstream>
 
 
 int download(char* arg) 
@@ -13,12 +14,21 @@ int download(char* arg)
   int down = system("git clone https://github.com/NesMaker/configurer -q");
   int clean1  = system("rm configurer/.git -rf");
   int clean2  = system("rm configurer/.github -rf");
+  int clean3  = system("rm configurer/.replit -rf");
+  int clean4  = system("rm configurer/replit.nix -rf");
   return 0;
 }
 
-int config(char* arg)
+int config()
 {
-  int shut = system("cd hello && mv Makefile makerfiler && make -f makerfiler && rm makefiler -rf");
+  int shut = system("cd $(cat name) && mv Makefile makerfiler");
+  int shutup = system("cd $(cat name) && make -f makerfiler");
+  return 0;
+}
+
+int clean()
+{
+  int shut = system("rm name -rf");
   return 0;
 }
 
@@ -72,7 +82,13 @@ int main(int argc, char *argv[]) {
           else {
             download(argv[2]);
             rename("configurer", argv[2]);
-            config(argv[2]);
+            int begone = system("touch name");
+            std::ofstream myfile;
+            myfile.open("name");
+            myfile << argv[2];
+            myfile.close();
+            config();
+            clean();
             DIR* dir1 = opendir(argv[2]);
             if (dir1) {
             printf("Project created sucessfully \n");
