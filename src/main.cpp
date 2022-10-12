@@ -1,11 +1,6 @@
 #include <cstdio>
-#include <cstdlib>
 #include <cstring>
-#include <sys/types.h>
-#include <unistd.h>
-#include <sys/stat.h>
 #include <dirent.h>
-#include <errno.h>
 #include <fstream>
 
 int download(char* arg) 
