@@ -17,12 +17,7 @@ int config()
 {
   int shut = system("cd $(cat name) && mv Makefile makerfiler");
   int shutup = system("cd $(cat name) && make -f makerfiler");
-  return 0;
-}
-
-int clean()
-{
-  int shut = system("rm name -rf");
+  int shutuup = system("rm name -rf");
   return 0;
 }
 
@@ -113,7 +108,6 @@ int main(int argc, char *argv[]) {
             myfile << argv[2];
             myfile.close();
             config();
-            clean();
             DIR* dir1 = opendir(strcat(argv[2], "/src"));
             if (dir1) {
             printf("Project created sucessfully \n");
